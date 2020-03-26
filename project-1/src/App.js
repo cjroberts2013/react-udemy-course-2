@@ -7,18 +7,22 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      lat: null
     }
+
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({ lat: position.coords.latitude })
+      },
+      err => console.log(err)
+    );
   }
 
   render() {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => console.log(position),
-      err => console.log(err)
-    );
     return (
       <div className="App" >
         <SeasonDisplay />
+        Latitude: {this.state.lat}
       </div>
     );
   }
