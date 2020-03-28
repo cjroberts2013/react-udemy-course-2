@@ -26,7 +26,9 @@ class App extends Component {
       return <div>Error: {this.state.errorMessage}</div>
     }
 
-    if (something)
+    if (!this.state.errorMessage && this.state.lat) {
+      return <div>Latitude: {this.state.lat}</div>
+    }
   }
 }
 
