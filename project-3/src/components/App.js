@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SearchBar from './SearchBar';
 import VideoList from './VideoList';
-import youtube from './../apis/youtube'
+import youtube from './../apis/youtube';
+import VideoDetail from './VideoDetail'
 
 
 class App extends Component {
@@ -19,14 +20,14 @@ class App extends Component {
     }
 
     onVideoSelect = video => {
-        console.log('From the app!', video)
+        this.setState({ selectedVideo: video })
     }
 
     render() {
         return (
             <div className='ui container'>
                 <SearchBar onFormSubmit={this.onTermSubmit} />
-                I have {this.state.videos.length} videos
+                <VideoDetail video={this.state.selectedVideo} />
                 <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
             </div>
         )
